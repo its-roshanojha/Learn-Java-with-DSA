@@ -1,5 +1,7 @@
 package com.college;
 
+import java.util.Scanner;
+
 import com.college.student.MyStudent;
 import com.college.student.studentdetails.StudentDetails;
 import com.college.teacher.MyTeacher;
@@ -28,6 +30,7 @@ class MyMain {
 
     public static void main(java.lang.String[] args) {
         System.out.println("I am Main");
+
 
         MyStudent ms = new MyStudent();
         ms.print();
