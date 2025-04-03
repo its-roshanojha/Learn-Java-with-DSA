@@ -20,7 +20,7 @@ public class MyFunc {
         System.out.println("Our new area is: " + area);
 
 
-// -------------------------------------------------------------------------------
+// -------------------------SWAP------------------------------------------------------
         Temp obj1 =  new Temp();
         Temp obj2 =  new Temp();
         Temp obj3 =  new Temp();
@@ -44,5 +44,19 @@ public class MyFunc {
         int temp_var = obj1.myVar1;
         obj1.myVar1 = obj2.myVar1;
         obj2.myVar1 = temp_var;
+    }
+
+    public void swapByValue (long val1, long val2){
+        long temp_var = val1;
+        val1 = val2;
+        val2 = val1;
+        System.out.println(val1+","+ val2);
+    }
+// Function Overloading (Happens due to different function signature i.e different num of args or diff data types)
+    public void swapByValue (long val1, int val2){
+        long temp_var = val1;
+        val1 = val2;
+        val2 = (int)val1;
+        System.out.println(val1+","+ val2);
     }
 }
