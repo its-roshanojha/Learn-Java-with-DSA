@@ -49,14 +49,14 @@ public class MyFunc {
     public void swapByValue (long val1, long val2){
         long temp_var = val1;
         val1 = val2;
-        val2 = val1;
+        val2 = temp_var;
         System.out.println(val1+","+ val2);
     }
 // Function Overloading (Happens due to different function signature i.e different num of args or diff data types)
     public void swapByValue (long val1, int val2){
         long temp_var = val1;
         val1 = val2;
-        val2 = (int)val1;
+        val2 = (int)temp_var;
         System.out.println(val1+","+ val2);
     }
 }
