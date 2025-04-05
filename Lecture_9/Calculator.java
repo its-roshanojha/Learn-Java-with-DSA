@@ -17,10 +17,13 @@ public class Calculator {
             String input = sc.next();
             char ch = input.charAt(0);
 
-            if (input.length() != 1) {
+            char[] validOperations = {'*', '+', '-', '%', '/'};
+
+            if (input.length() != 1 || !isValidOperation(input.charAt(0), validOperations)) {
                 System.out.println("Invalid input, please try again.");
+                System.out.println("Kya kar raha h badwe!");
             } else {
-                obj.chooseOperation(ch);
+                obj.chooseOperation(input.charAt(0));
             }
 
             boolean exit = obj.exitProgram();
@@ -31,6 +34,16 @@ public class Calculator {
         } while (true);
 
         System.out.println("Thanks for using the Smart Calculator!");
+    }
+
+    public static boolean isValidOperation(char ch, char[] validOps) {
+        for (char op : validOps) {
+            if (ch == op) {
+                return true;
+            }
+        }
+        System.out.println("Kya kar raha h badwe!");
+        return false;
     }
 
     public boolean exitProgram() {
@@ -93,7 +106,7 @@ public class Calculator {
                 break;
 
             default:
-                System.out.println("Unknown operation. Try again!");
+                System.out.println("Kya kar raha h badwe!");
         }
     }
 }
