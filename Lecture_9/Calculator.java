@@ -4,38 +4,96 @@ import Lecture_9.operations.*;
 import java.util.Scanner;
 
 public class Calculator {
+
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter any of the operators to perform your operation (*, +, -) : ");
-        char operator = scan.next().charAt(0);
+        Calculator obj = new Calculator();
+        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter the first number: ");
-        double num1 = scan.nextDouble();
-        System.out.println("Enter the second number: ");
-        double num2 = scan.nextDouble();
+        System.out.println("Welcome to Smart Calculator - Powered by Java + Packages");
 
-        double result = 0;
-        boolean valid = true;
+        do {
+            System.out.println("Choose an Operation: (*, +, -, %, /)");
+            System.out.print("-> ");
+            String input = sc.next();
+            char ch = input.charAt(0);
 
-        switch (operator) {
+            if (input.length() != 1) {
+                System.out.println("Invalid input, please try again.");
+            } else {
+                obj.chooseOperation(ch);
+            }
+
+            boolean exit = obj.exitProgram();
+            if (exit) {
+                break;
+            }
+
+        } while (true);
+
+        System.out.println("Thanks for using the Smart Calculator!");
+    }
+
+    public boolean exitProgram() {
+        Scanner sc = new Scanner(System.in);
+        int retries = 5;
+        for (int i = 0; i < retries; i++) {
+            System.out.print("Do you want to continue? (y/n): ");
+            String input = sc.next();
+            if (input.length() == 1) {
+                char ch = input.charAt(0);
+                if (ch == 'n' || ch == 'N') return true;
+                if (ch == 'y' || ch == 'Y') return false;
+            }
+            System.out.println("Invalid input, please try again.");
+        }
+
+        System.out.println("Too many invalid attempts. Exiting...");
+        return true;
+    }
+
+    public int getInteger(String prompt) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print(prompt);
+        return sc.nextInt();
+    }
+
+    public void chooseOperation(char ch) {
+        int a, b;
+        
+        a = getInteger("Enter first number: ");
+        b = getInteger("Enter second number: ");
+        
+        switch (ch) {
             case '+':
-                result = Addition.addition(num1, num2);
+                System.out.println("Result: " + Addition.addition(a, b));
                 break;
+
             case '-':
-                result = Subtraction.subtraction(num1, num2);
+                System.out.println("Result: " + Subtraction.subtraction(a, b));
                 break;
+
             case '*':
-                result = Multiplication.multiplication(num1, num2);
+                System.out.println("Result: " + Multiplication.multiplication(a, b));
                 break;
+
+            case '/':
+                try {
+                    System.out.println("Result: " + Division.division(a, b));
+                } catch (ArithmeticException e) {
+                    System.out.println("Cannot divide by zero!");
+                }
+                break;
+
+            case '%':
+                try {
+                    System.out.println("Result: " + Modulo.mod(a, b));
+                } catch (ArithmeticException e) {
+                    System.out.println("Cannot modulo by zero!");
+                }
+                break;
+
             default:
-                valid = false;
-                System.out.println("Invalid operator.");
+                System.out.println("Unknown operation. Try again!");
         }
-
-        if (valid) {
-            System.out.println("The result is: " + result);
-        }
-
-        scan.close();
     }
 }
